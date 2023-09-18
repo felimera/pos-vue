@@ -1,0 +1,38 @@
+<script setup>
+import Link from '../../components/Link.vue';
+import useImge from '../../composables/useImge'
+
+const { onFileChange } = useImge();
+
+</script>
+
+<template>
+    <div>
+        <Link to="products">Volver</Link>
+        <h1 class="text-4xl font-black my-10">Nuevo Producto</h1>
+
+        <div class="flex justify-center bg-white shadow">
+            <div class="mt-10 p-10 w-full 2xl:w-2/4">
+
+                <FormKit type="form" submit-label="Agregar Producto"
+                    incomplete-message="Campos incompletos: Debes agregar los campos obligatorios.">
+                    <FormKit type="text" label="Nombre" name="name" placeholder="Nombre del Producto" validation="required"
+                        :validation-messages="{ required: 'El Nombre del Producto es Obligatorio' }" />
+                    <FormKit type="file" label="Imgen Producto" name="image" validation="required"
+                        :validation-messages="{ required: 'La Imagen del Producto es Obligatoria' }" accept=".jpg"
+                        multiple="false" @change="onFileChange" />
+                    <FormKit type="select" label="Categoría" name="category" validation="required"
+                        :validation-messages="{ required: 'La Categoría es Obligatoria' }" :options="[1, 2, 3]" />
+                    <FormKit type="number" label="Precio" name="price" placeholder="Precio del Producto"
+                        validation="required" :validation-messages="{ required: 'El Precio del Producto es Obligatorio' }"
+                        min="1" step="10" />
+                    <FormKit type="number" label="Disponibles" name="availability"
+                        placeholder="Cantidad disponible del Producto" validation="required"
+                        :validation-messages="{ required: 'La Cantidad del Producto es Obligatorio' }" min="1" step="10" />
+                </FormKit>
+
+            </div>
+        </div>
+    </div>
+</template>
+
