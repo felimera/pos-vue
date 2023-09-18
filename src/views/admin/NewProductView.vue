@@ -10,7 +10,7 @@ import Link from '../../components/Link.vue';
         <div class="flex justify-center bg-white shadow">
             <div class="mt-10 p-10 w-full 2xl:w-2/4">
 
-                <FormKit type="form" submit-label="Agregar Producto">
+                <FormKit type="form" submit-label="Agregar Producto"  incomplete-message="Campos incompletos: Debes agregar los campos obligatorios." >
                     <FormKit type="text" label="Nombre" name="name" placeholder="Nombre del Producto" validation="required"
                         :validation-messages="{ required: 'El Nombre del Producto es Obligatorio' }" />
                     <FormKit type="file" label="Imgen Producto" name="image" validation="required"
