@@ -9,7 +9,7 @@ import Logo from './Logo.vue';
             <Logo />
         </div>
         <nav>
-            <Link to="admin">Adminstrar</Link>
+            <Link to="shop">Ir a tienda</Link>
         </nav>
     </header>
 </template>
