@@ -12,7 +12,6 @@ export default function useImage() {
   const storage = useFirebaseStorage();
 
   const onFileChange = (e) => {
-    console.log("e.target.files[0]", e.target.files[0]);
     const file = e.target.files[0];
     const filename = uid() + ".jpg";
     const sRef = storageRef(storage, "/products/" + filename);
