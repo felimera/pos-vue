@@ -2,7 +2,7 @@
 import Link from '../../components/Link.vue';
 import useImge from '../../composables/useImge'
 
-const { onFileChange } = useImge();
+const { url, onFileChange, isImageUploaded } = useImge();
 
 </script>
 
@@ -21,6 +21,12 @@ const { onFileChange } = useImge();
                     <FormKit type="file" label="Imgen Producto" name="image" validation="required"
                         :validation-messages="{ required: 'La Imagen del Producto es Obligatoria' }" accept=".jpg"
                         multiple="false" @change="onFileChange" />
+
+                    <div v-if="isImageUploaded">
+                        <p class="font-black">Imagen Producto:</p>
+                        <img :src="url" alt="Nueva imagen producto" class="w-32" />
+                    </div>
+                    
                     <FormKit type="select" label="Categoría" name="category" validation="required"
                         :validation-messages="{ required: 'La Categoría es Obligatoria' }" :options="[1, 2, 3]" />
                     <FormKit type="number" label="Precio" name="price" placeholder="Precio del Producto"
