@@ -19,7 +19,7 @@ export const useProductsStore = defineStore("products", () => {
     { id: 3, name: "Lentes" },
   ];
 
-  const q = query(collection(db, "products"), where("availability", "asc"));
+  const q = query(collection(db, "products"), orderBy("availability", "asc"));
   const productsCollection = useCollection(q);
 
   async function createProduct(product) {
