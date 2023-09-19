@@ -45,18 +45,21 @@ const submitHandler = data => {
                     </div>
 
                     <FormKit type="select" label="Categoría" name="category" validation="required"
-                        :validation-messages="{ required: 'La Categoría es Obligatoria' }" :options="[1, 2, 3]"
-                        v-model.number="formData.category" />
+                        :validation-messages="{ required: 'La Categoría es Obligatoria' }"
+                        :options="products.categoryOptions" v-model.number="formData.category" />
+
                     <FormKit type="number" label="Precio" name="price" placeholder="Precio del Producto"
                         validation="required" :validation-messages="{ required: 'El Precio del Producto es Obligatorio' }"
                         min="1" v-model.number="formData.price" />
-                <FormKit type="number" label="Disponibles" name="availability"
-                    placeholder="Cantidad disponible del Producto" validation="required"
-                    :validation-messages="{ required: 'La Cantidad del Producto es Obligatorio' }" min="1"
-                    v-model.number="formData.availability" />
-            </FormKit>
 
+                    <FormKit type="number" label="Disponibles" name="availability"
+                        placeholder="Cantidad disponible del Producto" validation="required"
+                        :validation-messages="{ required: 'La Cantidad del Producto es Obligatorio' }" min="1"
+                        v-model.number="formData.availability" />
+                </FormKit>
+
+            </div>
         </div>
     </div>
-</div></template>
+</template>
 
