@@ -1,3 +1,4 @@
+import { ref, computed } from "vue";
 import { uid } from "uid";
 import { useFirebaseStorage } from "vuefire";
 import {
@@ -7,10 +8,10 @@ import {
 } from "firebase/storage";
 
 export default function useImage() {
+  const url = ref("");
   const storage = useFirebaseStorage();
 
   const onFileChange = (e) => {
-    console.log("e.target.files[0]", e.target.files[0]);
     const file = e.target.files[0];
     const filename = uid() + ".jpg";
     const sRef = storageRef(storage, "/products/" + filename);
@@ -25,13 +26,17 @@ export default function useImage() {
         // La imagen ya se subio
         // Upload is completed
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log(downloadURL);
+          url.value = downloadURL;
         });
       }
     );
   };
 
+  const isImageUploaded = computed(() => (url.value ? url.value : null));
+
   return {
+    url,
     onFileChange,
+    isImageUploaded,
   };
 }
