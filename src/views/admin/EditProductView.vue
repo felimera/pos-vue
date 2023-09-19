@@ -7,6 +7,13 @@
       import { useProductsStore } from '@/stores/products';
       import useImage from '../../composables/useImge'
 
+      // Consultar FireStore
+      const route=useRoute();
+      const router=useRouter();
+      const db=useFirestore();
+      const docRef=doc(db,'products',route.params.id);
+      const product=useDocument(docRef);
+
       const { onFileChange,  url, isImageUploaded } = useImage()
       const products = useProductsStore()
 
@@ -18,6 +25,15 @@
           availability: '',
           image: ''
       })
+
+watch(product,(product)=>{
+if(!product)
+{
+router.push({name:'products'});
+}
+Object.assign((formData),product);
+});
+
 </script>
 <template>
     <div class="mt-10">
