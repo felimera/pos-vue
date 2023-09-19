@@ -19,7 +19,7 @@ export const useProductsStore = defineStore("products", () => {
     { id: 3, name: "Lentes" },
   ];
 
-  const q = query(collection(db, "products"));
+  const q = query(collection(db, "products"), where("availability", "asc"));
   const productsCollection = useCollection(q);
 
   async function createProduct(product) {
@@ -37,9 +37,12 @@ export const useProductsStore = defineStore("products", () => {
     return options;
   });
 
+  const noResults = computed(() => productsCollection.value.length === 0);
+
   return {
     createProduct,
     productsCollection,
     categoryOptions,
+    noResults,
   };
 });
