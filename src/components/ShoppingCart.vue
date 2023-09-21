@@ -27,7 +27,7 @@ const cart = useCartStore();
             </Amount>
             <Amount>
                 <template #label>Total a Pagar : </template>
-                {{ formatCurrency(0) }}
+                {{ formatCurrency(cart.total) }}
             </Amount>
         </dl>
     </div>
