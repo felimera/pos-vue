@@ -19,7 +19,7 @@ const cart = useCartStore();
         <dl class="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-500">
             <Amount>
                 <template #label>Subtotal : </template>
-                {{ formatCurrency(item.price) }}
+                {{ formatCurrency(cart.subtotal) }}
             </Amount>
             <Amount>
                 <template #label>Impuestos : </template>
