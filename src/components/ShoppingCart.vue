@@ -1,8 +1,13 @@
 <script setup>
 import ShopppingCartItem from './ShopppingCartItem.vue'
+import Amount from './Amount.vue';
+import CouponForm from './CouponForm.vue';
 import { useCartStore } from '../stores/cart';
+import { useCouponStore } from '../stores/coupons';
+import { formatCurrency } from '../helpers';
 
 const cart = useCartStore();
+const coupon = useCouponStore();
 </script>
 
 <template>
@@ -13,5 +18,29 @@ const cart = useCartStore();
         <ul role="list" class="mt-16 divide-y divide-gray-300">
             <ShopppingCartItem v-for="item in cart.items" :key="item.id" :item="item" />
         </ul>
+
+        <dl class="space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-500">
+            <Amount>
+                <template #label>Subtotal : </template>
+                {{ formatCurrency(cart.subtotal) }}
+            </Amount>
+            <Amount>
+                <template #label>Impuestos : </template>
+                {{ formatCurrency(cart.taxes) }}
+            </Amount>
+            <Amount v-if="coupon.isValidCoupon">
+                <template #label>Descuento : </template>
+                {{ formatCurrency(coupon.discount) }}
+            </Amount>
+            <Amount>
+                <template #label>Total a Pagar : </template>
+                {{ formatCurrency(cart.total) }}
+            </Amount>
+        </dl>
+
+        <CouponForm />
+
+        <button type="button" class="mt-10 w-full bg-indigo-600 hover:bg-indigo-700 text-white uppercase font-bold p-3"
+            @click="cart.checkout">Confirmar compra</button>
     </div>
 </template>
