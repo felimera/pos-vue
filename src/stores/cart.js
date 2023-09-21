@@ -22,6 +22,10 @@ export const useCartStore = defineStore("cart", () => {
   function addItem(item) {
     const index = isItemInCart(item.id);
     if (index >= 0) {
+      if (isProductAvailable(item, index)) {
+        alert("Haz alcanzado el limite de 5 productos.");
+        return;
+      }
       // Actualizar la cantidad
       items.value[index].quantity++;
     } else {
@@ -36,6 +40,10 @@ export const useCartStore = defineStore("cart", () => {
   }
 
   const isItemInCart = (id) => items.value.findIndex((item) => item.id === id);
+
+  const isProductAvailable = (item, index) =>
+    items.value[index].quantity >= item.availability ||
+    items.value[index].quantity >= MAX_PRODUCTS;
 
   const isEmpty = computed(() => items.value.length === 0);
 
