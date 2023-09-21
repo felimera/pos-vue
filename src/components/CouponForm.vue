@@ -12,4 +12,5 @@ const store = useCouponStore();
             v-model="store.couponInput" />
         <button type="button" class="p-3 bg-green-400 font-bold" @click="store.applyCoupon">Canjear</button>
     </div>
+    <p class="py-2 text-center text-sm font-extrabold">{{ store.couponValidationMessage }}</p>
 </template>
