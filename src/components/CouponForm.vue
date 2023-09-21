@@ -10,6 +10,6 @@ const store = useCouponStore();
     <div class="flex">
         <input type="text" placeholder="Ingresa el cupón" class="p-2 bg-white border-gray-300 w-full"
             v-model="store.couponInput" />
-        <button type="button" class="p-3 bg-green-400 font-bold">Canjear</button>
+        <button type="button" class="p-3 bg-green-400 font-bold" @click="store.applyCoupon">Canjear</button>
     </div>
 </template>
